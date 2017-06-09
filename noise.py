@@ -12,7 +12,7 @@ def normal(X, scale=1.0, seed=None):
 
 def lognormal(X, scale=1.0, seed=None):
     """Add lognormal noise"""
-    return np.log(white(X, scale, seed))
+    return np.log(normal(X, scale, seed))
 
 
 def brown(X, scale, seed=None):
