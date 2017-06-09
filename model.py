@@ -10,25 +10,6 @@ def create_times(t, dt=1e-3):
     return times
 
 
-def brown(t, N, d, scale, dt=1e-3, seed=None):
-    """Naturalistic bias (via diffusion model)"""
-    np.random.seed(seed)
-    times = create_times(t, dt)
-
-    rates = []
-    for _ in range(N):
-        r = [
-            d,
-        ]
-        for t in times[1:]:
-            d += np.random.normal(0, scale)
-            r.append(d)
-        rates.append(r)
-    rates = np.vstack(rates)
-
-    return rates
-
-
 def osc(t, N, a, f, phase=0, dt=1e-3):
     """Sinusoidal oscillation"""
     times = create_times(t, dt)
