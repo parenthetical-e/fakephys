@@ -1,13 +1,25 @@
+import numpy as np
 from numpy.random import seed as set_seed
-from numpy.random import normal as norm
 from scipy.ndimage.filters import gaussian_filter
+
+
+def artifiact_fill(X):
+    # Removed random segments, and set to last known good value
+    raise NotImplementedError("TODO")
+    pass
+
+
+def random_covariance(X, cov, K, seed=None):
+    """Add covariance between K randomly selected electrode"""
+    raise NotImplementedError("TODO")
+    pass
 
 
 def normal(X, scale=1.0, seed=None):
     """Add white noise"""
     set_seed(seed)
 
-    return X + norm(0, scale, size=X.shape)
+    return X + np.random.normal(0, scale, size=X.shape)
 
 
 def lognormal(X, scale=1.0, seed=None):
@@ -19,19 +31,22 @@ def brown(X, scale, seed=None):
     """Add brown noise"""
 
     set_seed(seed)
-    N, M = X.shape
+
+    X = np.atleast_2d(X)
+    M, N = X.shape
+    noi = np.zeros_like(X)
 
     for j in range(M):
-        d = normal(0, scale)
+        d = np.random.normal(0, scale)
         rates = [
             d,
         ]
 
-        for i in range(N):
-            d += normal(0, scale)
+        for _ in range(N - 1):
+            d += np.random.normal(0, scale)
             rates.append(d)
 
-        noi[:, j] = np.array(rates)
+        noi[j, :] = rates
 
     return X + noi
 
@@ -52,6 +67,7 @@ def temporal_autocorr(X, k=5, rho=0.1):
     """Additive temporal autocorrelation"""
 
     X = np.copy(X)
+    X = np.atleast_2d(X)
 
     N, M = X.shape
     for j in range(M):
