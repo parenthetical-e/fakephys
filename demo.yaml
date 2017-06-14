@@ -1,0 +1,56 @@
+# First define 'global' parameters
+shared_parameters :
+  n_electrodes : 15  # Five of these are noise-only
+  t : 1  # Simulation time (seconds)
+  dt : 0.001  # Sampling time (1 ms)
+#
+# Next define the data.
+#
+# Here we define a model with:
+# - 5 noise electrodes
+# - 1 irrelevent fast gamma channel
+# - 2 irrelevent alpha channels
+# - 6 beta1 channels with phase-sync differences
+#   between conditions
+#
+# Conditions are the top level index. 
+#
+# Each condition contains and arbitraty mixture of data 
+# models (taken from `fakephys.model.*`)
+data:
+  0 :  
+    wc :  # fast gamma
+      n : 1  # number of channels for this model call
+      P : 4
+      tau_i : 0.006  
+    wc :  # alpha-ish
+      n : 2
+      P : 4
+      tau_i : 0.08  
+    kuramoto :  # Phase coupling in beta1
+      n : 6
+      K : 0.5  # Very weak coupling
+      omega : 20
+  1 :
+    wc :
+      n : 1
+      P : 4
+      tau_i : 0.005  
+    wc :
+      n : 2
+      P : 4
+      tau_i : 0.08  
+    kuramoto :
+      n : 6
+      K : 7  # Phase sync increases in this condition
+      omega : 20
+# Finally, define the noise.
+#
+# After data generation any combination of noise
+# from `fakephys.noise.*` can be applied. The top lop-level
+# here (0, 1, ...) just sets the order in which the noise
+# models are applied.
+shared_noise :
+  0 :
+    normal :
+      scale : 1.0

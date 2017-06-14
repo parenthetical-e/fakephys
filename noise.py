@@ -7,7 +7,7 @@ from brian2 import *
 prefs.codegen.target = 'numpy'
 
 
-def random_covariance(X, cov, K, seed=None):
+def random_covariance(X, cov=0.1, K=2, seed=None, dt=None):
     """Add covariance between K randomly selected electrode pairs."""
     set_seed(seed)
 
@@ -34,20 +34,44 @@ def random_covariance(X, cov, K, seed=None):
     return noi
 
 
-def normal(X, scale=1.0, seed=None):
+def paired_covariance(X, cov=0.1, pairs=None, seed=None, dt=None):
+    """Add covariance between K randomly selected electrode pairs."""
+    set_seed(seed)
+
+    # Note sizes
+    M, N = X.shape
+
+    # Init (will contain covar electrodes)
+    noi = np.copy(X)
+
+    # Add covar
+    for pair in pairs:
+        e1 = X[pair[0], :]
+        e2 = X[pair[1], :]
+
+        e1 += (e2 * cov)
+        e2 += (e1 * cov)
+
+        noi[pair[0], :] = e1
+        noi[pair[1], :] = e2
+
+    return noi
+
+
+def normal(X, scale=1.0, seed=None, dt=None):
     """Add white noise"""
     set_seed(seed)
 
     return X + np.random.normal(0, scale, size=X.shape)
 
 
-def gamma(X, shape=2, scale=2, seed=None):
+def gamma(X, shape=2, scale=2, seed=None, dt=None):
     set_seed(seed)
 
     return X + np.random.gamma(shape, scale=scale, size=X.shape)
 
 
-def brown(X, scale, seed=None):
+def brown(X, scale=0.5, seed=None, dt=None):
     """Add brown noise"""
 
     set_seed(seed)

@@ -10,7 +10,7 @@ def create_times(t, dt=1e-3):
     return times
 
 
-def sinwaves(t, N, a, f, phase=0, dt=1e-3):
+def sinwaves(t, N, a=1, f=10, phase=0, dt=1e-3):
     """Sinusoidal oscillation"""
     times = create_times(t, dt)
 
@@ -62,7 +62,7 @@ def wc(t,
             # Q : 1 (constant)
         """
 
-    pops = NeuronGroup(1, model=eqs, namespace={'Q': Q, 'P': P})
+    pops = NeuronGroup(N, model=eqs, namespace={'Q': Q, 'P': P})
     pops.E = 0
     pops.I = 0
 
@@ -79,7 +79,7 @@ def wc(t,
 
 
 # --
-def kuramoto(t, N, omega, K, sigma=0.01, dt=1e-3):
+def kuramoto(t, N, omega=10, K=3, sigma=0.01, dt=1e-3):
     """Simulate a Kuramoto model."""
 
     times = np.linspace(0, t, int(t / dt))
