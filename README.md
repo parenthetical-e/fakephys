@@ -4,15 +4,15 @@ Simulating fake electrophysiological features.
 
 # Install
 
-First clone from gitub
+Assuming you're at the command line, first clone from gitub
 
         git clone git@github.com:brainprosthesis/fakephys.git
 
-The move to the cloned directory, on unix from the command line
+Then move to the cloned directory.
 
         cd fakephys
 
-And finally from the command line type
+And finally type.
 
         pip install .
 
