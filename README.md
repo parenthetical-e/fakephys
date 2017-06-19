@@ -4,7 +4,7 @@ Simulating fake electrophysiological features.
 
 # Install
 
-Assuming you're at the command line, first clone from gitub
+Assuming you're at the command line, clone from github.
 
         git clone git@github.com:brainprosthesis/fakephys.git
 
