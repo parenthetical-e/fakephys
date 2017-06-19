@@ -7,7 +7,7 @@ setup(
     url='https://github.com/brainprosthesis/fakephys',
     author='Erik J Peterson',
     author_email='erik.peterson@kernel.co',
-    license='MIT',
+    license='',
     packages=['fakephys'],
     scripts=['bin/phys'],
     zip_safe=False)
