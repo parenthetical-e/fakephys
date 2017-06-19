@@ -1,4 +1,4 @@
-# fakepark
+# fakephys
 
 Simulating fake electrophysiological features.
 
@@ -25,7 +25,7 @@ For use of the `.yaml` data design format install as above, then use the `phys` 
 
     phys --name=demo simulate --config=fakephys/demo.yaml --save
    
-  
+    
 # Dependencies
 
     - sdeint
