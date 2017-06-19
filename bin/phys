@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import fire
 import numpy as np
 from fakephys import model, noise

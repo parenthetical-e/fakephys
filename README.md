@@ -4,18 +4,26 @@ Simulating fake electrophysiological features.
 
 # Install
 
-`git clone git@github.com:brainprosthesis/fakephys.git` 
+First clone from gitub
 
-onto your Python path. (`pip install .` coming in Beta 2).
+        git clone git@github.com:brainprosthesis/fakephys.git
+
+The move to the cloned directory, on unix from the command line
+
+        cd fakephys
+
+And finally from the command line type
+
+        pip install .
 
 
 # Usage
 
 For interactive use see the notebooks in `ipynb/`.
 
-For use of the `.yaml` data design format (which is run from the command line) git clone as above, then run:
+For use of the `.yaml` data design format install as above, then use the `phys` command line interface. For example,
 
-    python fakephys/run.py --name=demo simulate --config=fakephys/demo.yaml --save
+    phys --name=demo simulate --config=fakephys/demo.yaml --save
    
   
 # Dependencies
