@@ -104,9 +104,8 @@ def _lif(time, r_e=10, r_i=10, tau_e=5e-3, tau_i=10e-3, g_l=10e-9, dt=1e-3):
     g_l *= siemens
 
     # Balanced input, numbers from:
-    # Destexhe, A., Rudolph, M. & Paré, D., 2003.
+    # Destexhe, A., Rudolph, M. & Pare, D., 2003.
     # The high-conductance state of neocortical neurons in vivo.
-    # Nature Reviews Neuroscience, 4(9), pp.739–751.
     w_e = 0.73 * g_l
     w_i = 3.67 * g_l
 
@@ -194,14 +193,12 @@ def balanced(X,
     ----------
     This way of simulating 1/F noise is justified in ephys based on:
 
-    - Gao, R., Peterson, E. J., & Voytek, B. (2016). Inferring Synaptic 
-      Excitation/Inhibition Balance from Field Potentials. bioRxiv, 1–31.
+    - Gao, R., Peterson, E. J., & Voytek, B. (2016).
     
     But the idea has a much longer history in intra-cellular recodings:
     
-    - Destexhe, A., Rudolph, M. & Paré, D., 2003. 
+    - Destexhe, A., Rudolph, M. & Pare, D., 2003. 
       The high-conductance state of neocortical neurons in vivo. 
-      Nature Reviews Neuroscience, 4(9), pp.739–751.
     """
 
     X = np.atleast_2d(X)
